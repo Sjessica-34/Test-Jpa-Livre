@@ -12,6 +12,30 @@
             <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/compta" />
             <property name="javax.persistence.jdbc.user" value="root" />
             <property name="javax.persistence.jdbc.password" value="Fer18rania*" />
+        </properties>
+    </persistence-unit>
+
+    <!--Persistence-unit pour la banque-->
+        <persistence-unit name="banque" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>banque.entities.Banque</class>
+        <class>banque.entities.Client</class>
+        <class>banque.entities.Compte</class>
+        <class>banque.entities.LivretA</class>
+        <class>banque.entities.Operation</class>
+        <properties>
+            <!-- Cette propriété ne créé que les nouvelles tables après chaque redémarrage:-->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!--Cette propriété désactive l’auto-détection des entités dans les packages du projet:-->
+            <property name="hibernate.archive.autodetection" value="" />
+            <!--Attention cette propriété s’utilise avec la balise class pour lister les entités manuellement (cf exemple ci-dessous).-->
+            <!-- desactiver l'autodetection des classes de type @Entity -->
+            <property name="hibernate.archive.autodetection" value="" />
+            <!-- Activation de la génération des tables manquantes uniquement -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!-- Drop and create à chaque redémarrage -->
+            <property name="javax.persistence.schema-generation.database.action"
+                      value="drop-and-create"/>
 
             <!-- Affichage des requêtes SQL -->
             <property name="hibernate.show_sql" value="true" />
@@ -23,8 +47,6 @@
             <property name="javax.persistence.jdbc.password" value="Fer18rania*" />
             <property name="javax.persistence.jdbc.driver"
                       value="org.mariadb.jdbc.Driver" />
-        </properties>
-    </persistence-unit>
         </properties>
     </persistence-unit>
 </persistence>
